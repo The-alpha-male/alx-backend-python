@@ -2,6 +2,7 @@
 
 """Addition of two numbers"""
 
+
 def add(a: float, b: float) -> float:
-	"""add the numbers""""
-	return a+b
+    """Addition of two numbers"""
+    return a + b
