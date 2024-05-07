@@ -1,12 +1,15 @@
 #!/usr/bin/env python3
-"""Basic async syntax"""
+"""Concurrent coroutines"""
 
 import asyncio
-import random
+from typing import List
+
+wait_random = __import__('0-basic_async_syntax').wait_random
 
 
-async def wait_random(max_delay: int = 10) -> float:
-    """Wait for a random delay between 0 and max_delay"""
-    delay = random.uniform(0, max_delay)
-    await asyncio.sleep(delay)
-    return delay
+async def wait_n(n: int, max_delay: int) -> List[float]:
+    """Return the list of all delays"""
+    delays = []
+    for _ in range(n):
+        delays.append(wait_random(max_delay))
+    return [await delay for delay in asyncio.as_completed(delays)]
